@@ -1000,6 +1000,35 @@ if (location.hash && pages[location.hash.slice(1)]) {
   openPageFromHistory(location.hash.slice(1));
 }
 </script>
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://xuhvlgjcekrmxfwmtauk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_OJ1HA2_AbnMrMA1D3mSfmw_YVZdNIIl";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function testDatabase() {
+  const { data, error } = await db
+    .from("events")
+    .select("title, event_date, venue");
+
+  if (error) {
+    console.error("Database error:", error.message);
+    return;
+  }
+
+  console.log("Database connected!", data);
+}
+
+testDatabase();
+</script>
+</body>
+
 
 </body>
 </html>
